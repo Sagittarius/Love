@@ -1,18 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>Our Love Story</title>
+	<title>Vincent ❤️ Cindy</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<style type="text/css">
 		@font-face {
 			font-family: digit;
 			src: url('digital-7_mono.ttf') format("truetype");
 		}
 	</style>
-	<link href="css/default.css" type="text/css" rel="stylesheet">
+	<link href="css/default_dev.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/garden.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/garden_dev.js"></script>
+    <script type="text/javascript" src="js/functions_dev.js"></script>
 </head>
 
 <body>
@@ -20,56 +21,60 @@
 		<div id="content">
 			<div id="code">
 				<span class="comments">/**</span><br />
-				<span class="space"/><span class="comments">* We are both Fudan SSers and programmers,</span><br />
-				<span class="space"/><span class="comments">* so I write some code to celebrate our 1st anniversary.</span><br />
+				<span class="space"/><span class="comments">* 妳我本不相干，感谢上帝让我们相遇。</span><br />
 				<span class="space"/><span class="comments">*/</span><br />
-				Boy i = <span class="keyword">new</span> Boy(<span class="string">"hackerzhou"</span>);<br />
-				Girl u = <span class="keyword">new</span> Girl(<span class="string">"MaryNee"</span>);<br />
-				<span class="comments">// Nov 2, 2010, I told you I love you. </span><br />
+				Boy i = <span class="keyword">new</span> Boy(<span class="string">"Vincent"</span>);<br />
+				Girl u = <span class="keyword">new</span> Girl(<span class="string">"Cindy"</span>);<br />
+				<span class="comments">// 2014年11月30日，在机场我送了妳一束花，</span> <br />
+				<span class="comments">// 索要了一个拥抱，这是我无声的告白。 </span><br />
 				i.love(u);<br />
-				<span class="comments">// Luckily, you accepted and became my girlfriend eversince.</span><br />
+				<span class="comments">// 很幸运，妳似乎默认了这样的无声的告白.</span><br />
 				u.accepted();<br />
-				<span class="comments">// Since then, I miss u every day.</span><br />
-				i.miss(u);<br />
-				<span class="comments">// And take care of u and our love.</span><br />
-				i.takeCareOf(u);<br />
-				<span class="comments">// You say that you won't be so easy to marry me.</span><br />
-				<span class="comments">// So I keep waiting and I have confidence that you will.</span><br />
-				<span class="keyword">boolean</span> isHesitate = <span class="keyword">true</span>;<br />
-				<span class="keyword">while</span> (isHesitate) {<br />
+				<span class="comments">// 自那之后，我们彼此相依相伴.</span><br />
+				i.with(u);<br />
+				<span class="comments">// 我们也彼此珍惜我们的爱情.</span><br />
+				i.cherish(u);<br />
+				<span class="comments">// 如今，我想牵妳步入婚姻的殿堂，让我照顾妳.</span><br />
+				<span class="comments">// 妳愿意嫁给我吗？</span><br />
+				<span class="keyword">boolean</span> wouldUMarryMe = <span class="keyword">true</span>;<br />
+				<span class="keyword">while</span> (!wouldUMarryMe) {<br />
 				<span class="placeholder"/>i.waitFor(u);<br />
-				<span class="placeholder"/><span class="comments">// I think it is an important decision</span><br />
-				<span class="placeholder"/><span class="comments">// and you should think it over.</span><br />
-				<span class="placeholder"/>isHesitate = u.thinkOver();<br />
+				<span class="placeholder"/>wouldUMarryMe = u.thinkOver();<br />
 				}<br />
-				<span class="comments">// After a romantic wedding, we will live happily ever after.</span><br />
-				i.marry(u);<br />
-				i.liveHappilyWith(u);<br />
+				i.marry(u); </br>
+				i.takeCareOf(u);
 			</div>
 			<div id="loveHeart">
 				<canvas id="garden"></canvas>
 				<div id="words">
 					<div id="messages">
-						Minyue, I have fallen in love with you for
+						我们在一起已有
 						<div id="elapseClock"></div>
+						我们还会在一起很久很久
+					</div>
+					<div id="marryme">
+						Marry Me<br/>
 					</div>
 					<div id="loveu">
-						Love u forever and ever.<br/>
-						<div class="signature">- hackerzhou</div>
+						爱妳到永远<br/>
+						<div class="signature">- Vincent</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div id="copyright">
-			Inspired by <a href="http://www.openrise.com/lab/FlowerPower/">FlowerPower</a> project.<br />
-			Copyright © 2011 <a href='http://hackerzhou.me'>hackerzhou.me</a> 2009-2011
+			<div id="dialog-overlay"></div>
+			    <div id="dialog-box">
+			        <div class="dialog-content">
+			            <div id="dialog-message"></div>
+			            <a href="#" class="button">Yes, I Do.</a>
+			    </div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
 		var offsetX = $("#loveHeart").width() / 2;
 		var offsetY = $("#loveHeart").height() / 2 - 55;
 		var together = new Date();
-		together.setFullYear(2010, 10, 2);
+		together.setFullYear(2014, 11, 30);
 		together.setHours(20);
 		together.setMinutes(0);
 		together.setSeconds(0);
@@ -85,18 +90,45 @@
 			$("#copyright").css("bottom", "10px");
 		    document.execCommand("stop");
 		} else {
-			setTimeout(function () {
-				startHeartAnimation();
-			}, 5000);
+			
+			// setTimeout(function () {
+			// 	startHeartAnimation();
+			// }, 5000);
 
-			timeElapse(together);
-			setInterval(function () {
-				timeElapse(together);
-			}, 500);
+			
+			// setInterval(function () {
+			// 	timeElapse(together);
+			// }, 500);
 
 			adjustCodePosition();
 			$("#code").typewriter();
 		}
+
+		$(document).ready(function () {
+
+            // if user clicked on button, the overlay layer or the dialogbox, close the dialog 
+            $('a.btn-ok, #dialog-overlay, #dialog-box').click(function () {    
+                $('#dialog-overlay, #dialog-box').hide();
+                $('#code').hide();
+                $('#loveHeart').show();
+                startHeartAnimation();
+                setInterval(function () {
+			    	timeElapse(together);
+			    }, 500);
+                return false;
+            });
+
+            // if user resize the window, call the same function again
+            // to make sure the overlay fills the screen and dialogbox aligned to center   
+            $(window).resize(function () {
+
+                //only do it if the dialog box is not hidden
+                if (!$('#dialog-box').is(':hidden')) popup();      
+            });
+
+
+        });
+
 	</script>
 </body>
 </html>

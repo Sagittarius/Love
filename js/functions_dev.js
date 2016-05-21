@@ -11,7 +11,7 @@ $(function () {
     $garden = $("#garden");
     gardenCanvas = $garden[0];
 	gardenCanvas.width = $("#loveHeart").width();
-    gardenCanvas.height = $("#loveHeart").height()
+    gardenCanvas.height = 300;
     gardenCtx = gardenCanvas.getContext("2d");
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
@@ -37,8 +37,8 @@ $(window).resize(function() {
 
 function getHeartPoint(angle) {
 	var t = angle / Math.PI;
-	var x = 19.5 * (16 * Math.pow(Math.sin(t), 3));
-	var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+	var x = 13.5 * (12 * Math.pow(Math.sin(t), 3));
+	var y = - 9.5 * (10 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
 	return new Array(offsetX + x, offsetY + y);
 }
 
@@ -65,7 +65,7 @@ function startHeartAnimation() {
 			clearInterval(animationTimer);
 			showMessages();
 		} else {
-			angle += 0.2;
+			angle += 0.1;
 		}
 	}, interval);
 }
@@ -85,6 +85,9 @@ function startHeartAnimation() {
 				$ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
 				if (progress >= str.length) {
 					clearInterval(timer);
+					setTimeout(function() {
+					popup("Would U Marry Me?");
+				}, 500);
 				}
 			}, 75);
 		});
@@ -110,12 +113,13 @@ function timeElapse(date){
 	if (seconds < 10) {
 		seconds = "0" + seconds;
 	}
-	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
+	var result = "<span class=\"digit\">" + days + "</span> 天 <span class=\"digit\">" + hours + "</span> 时 <span class=\"digit\">" + minutes + "</span> 分 <span class=\"digit\">" + seconds + "</span> 秒"; 
 	$("#elapseClock").html(result);
 }
 
 function showMessages() {
 	adjustWordsPosition();
+	showMarryMe();
 	$('#messages').fadeIn(5000, function() {
 		showLoveU();
 	});
@@ -123,14 +127,51 @@ function showMessages() {
 
 function adjustWordsPosition() {
 	$('#words').css("position", "absolute");
-	$('#words').css("top", $("#garden").position().top + 195);
-	$('#words').css("left", $("#garden").position().left + 70);
+	$('#words').css("top", $("#garden").position().top - 80);
+	$('#words').css("left", $("#garden").position().left);
 }
 
 function adjustCodePosition() {
-	$('#code').css("margin-top", ($("#garden").height() - $("#code").height()) / 2);
+	$('#code').css("margin-top", 10);
 }
 
 function showLoveU() {
+	$('#loveu').css("position", "absolute");
+	$('#loveu').css("top", $loveHeart.height() - 80);
+	$('#loveu').css("left", $loveHeart.width() - 120);
 	$('#loveu').fadeIn(3000);
+
+}
+
+function showMarryMe() {
+	$('#marryme').css("position", "absolute");
+	$('#marryme').css("top", $loveHeart.height()/2 - 50);
+	$('#marryme').css("left", $loveHeart.width()/2 - 100);
+	$('#marryme').fadeIn(3000);
+
+}
+
+    //Popup dialog
+function popup(message) {
+
+    // get the screen height and width 
+    var maskHeight = $(document).height(); 
+    var maskWidth = $(window).width();
+
+    // calculate the values for center alignment
+    var dialogHeight =  $('#dialog-box').outerHeight(); 
+    var dialogWidth = $('#dialog-box').outerWidth();
+
+    // assign values to the overlay and dialog box
+    $('#dialog-overlay').css({height:maskHeight, width:maskWidth}).show();
+    $('#dialog-box').css({
+            top: "50%",
+            left:"50%",
+            "margin-left": -(dialogWidth/2),
+            "margin-top": -(dialogHeight/2)
+            }).show();
+
+    // display the message
+    $('#dialog-message').html(message);
+
 }
